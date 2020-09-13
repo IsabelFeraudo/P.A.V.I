@@ -22,7 +22,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            this.CenterToParent();
         }
 
         private void BtnIngresar_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
             Usuario user = new Usuario();
             user = UsuarioBLL.ValidarLogin(TxtUsuario.Text, TxtPassword.Text);
 
-            if (user != null)
+            if (!string.IsNullOrEmpty(user.Nombre.ToString()))
             {
                 MessageBox.Show("Login OK.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
