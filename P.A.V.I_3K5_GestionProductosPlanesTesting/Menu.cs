@@ -17,6 +17,22 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
             InitializeComponent();
         }
 
+        private void BtnProducto_Click(object sender, EventArgs e)
+        {
+            Producto prducto = new Producto();
+            prducto.ShowDialog();
+        }
 
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            this.CenterToParent();
+            Login login = new Login();
+            login.Close();
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }

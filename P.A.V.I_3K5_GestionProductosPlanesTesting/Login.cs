@@ -25,6 +25,8 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
             this.CenterToParent();
         }
 
+        // buscar como centralizar al agrandar
+
         private void BtnIngresar_Click(object sender, EventArgs e)
         {
             if ((TxtUsuario.Text == ""))
@@ -44,6 +46,10 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
             if (!string.IsNullOrEmpty(user.Nombre.ToString()))
             {
                 MessageBox.Show("Login OK.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //this.Close();
+                Menu menu = new Menu();
+                menu.ShowDialog();
+                
             }
             else 
             {

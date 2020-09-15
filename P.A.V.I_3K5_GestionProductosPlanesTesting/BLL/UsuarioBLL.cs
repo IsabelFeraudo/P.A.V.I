@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
 {
-    class UsuarioBLL
+    public class UsuarioBLL
     {
         public static Usuario ValidarLogin(string nombreUsuario, string password)
         {

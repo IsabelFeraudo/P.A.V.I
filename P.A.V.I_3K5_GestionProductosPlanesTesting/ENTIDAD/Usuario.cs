@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
 {
-    class Usuario
+    public class Usuario
     {
         public int IdUsuario { get; set; }
         public int IdPerfil { get; set; }
