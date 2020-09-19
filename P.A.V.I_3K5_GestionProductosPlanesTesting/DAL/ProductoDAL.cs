@@ -23,22 +23,22 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return producto;
         }
 
-        public static ProductoEntidad ValidarProducto(string nombre)
+        public static List<ProductoEntidad> ValidarProducto(string nombre)
         {
-            ProductoEntidad producto = new ProductoEntidad();
+            List<ProductoEntidad> producto = new List<ProductoEntidad>();
             try
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-H6PMK8M\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Productos WHERE nombre = @nombre AND (borrado = false OR borrado = null)", connection);
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Productos WHERE nombre like '%" + nombre + "%' AND (borrado = 0 OR borrado = null)", connection);
+                    //cmd.Parameters.AddWithValue("@nombre", nombre);
                     cmd.CommandType = CommandType.Text;
                     connection.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            producto = LoadProducto(dr);
+                            producto.Add(LoadProducto(dr));
                         }
                     }
                     if (connection.State == ConnectionState.Open)
@@ -57,9 +57,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             List<ProductoEntidad> producto = new List<ProductoEntidad>();
             try
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-H6PMK8M\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Productos ", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Productos where borrado = 0", connection);
                     cmd.CommandType = CommandType.Text;
                     connection.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
@@ -83,7 +83,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
         public static string UpdateProducto(string nombre)
         {
             string respuesta = "";
-            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-H6PMK8M\sql_instancia;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
             {
                 SqlCommand cmd = new SqlCommand("update Productos set nombre = @nombre WHERE nombre = @nombre AND (borrado = false OR borrado = null)", connection);
                 cmd.Parameters.AddWithValue("@nombre", nombre);
@@ -104,7 +104,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
         public static string InsertProducto(string nombre)
         {
             string respuesta = "";
-            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-H6PMK8M\sql_instancia;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
             {
                 SqlCommand cmd = new SqlCommand("insert into Productos (nombre,borrado) values(@nombre, @borrado)", connection);
                 cmd.Parameters.AddWithValue("@nombre", nombre);
@@ -118,19 +118,18 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return respuesta;
         }
 
-        public static string DeleteProducto(string nombre)
+        public static string DeleteProducto(int id)
         {
             string respuesta = "";
-            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-H6PMK8M\sql_instancia;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
             {
-                SqlCommand cmd = new SqlCommand("update Productos set borrado = true WHERE nombre = @nombre ", connection);
-                cmd.Parameters.AddWithValue("@nombre", nombre);
+                SqlCommand cmd = new SqlCommand("update Productos set borrado = 1 WHERE id_producto = " + id , connection);
+                cmd.CommandType = CommandType.Text;
                 connection.Open();
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.Read())
-                        respuesta = "ok";
-                }
+                
+                cmd.ExecuteNonQuery();
+                if (cmd.ExecuteNonQuery() > 0)
+                    respuesta = "ok";
 
                 if (connection.State == ConnectionState.Open)
                     connection.Close();

@@ -1,4 +1,5 @@
 ﻿using P.A.V.I_3K5_GestionProductosPlanesTesting.DAL;
+using P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
 {
     public class ProductoBLL
     {
-        public static ENTIDAD.ProductoEntidad ValidarProducto(string nombre)
+        public static List<ProductoEntidad> ValidarProducto(string nombre)
         {
             return ProductoDAL.ValidarProducto(nombre);
         }
@@ -22,9 +23,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
         {
             return ProductoDAL.InsertProducto(nombre);
         }
-        public static string DeleteProducto(string nombre)
+        public static string DeleteProducto(int id)
         {
-            return ProductoDAL.DeleteProducto(nombre);
+            return ProductoDAL.DeleteProducto(id);
         }
 
         public static List<ENTIDAD.ProductoEntidad> SelectAll()

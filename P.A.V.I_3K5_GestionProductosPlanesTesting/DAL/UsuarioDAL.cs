@@ -32,7 +32,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             Usuario usuario = new Usuario();
             try
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-H6PMK8M\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios WHERE usuario = @usuario and password = @password", connection);
                     cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
