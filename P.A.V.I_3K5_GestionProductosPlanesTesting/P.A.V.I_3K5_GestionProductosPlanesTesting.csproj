@@ -50,7 +50,10 @@
     <Compile Include="BLL\UsuarioBLL.cs" />
     <Compile Include="DAL\ProductoDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
+    <Compile Include="ENTIDAD\CicloPrueba.cs" />
+    <Compile Include="ENTIDAD\PlanesDePrueba.cs" />
     <Compile Include="ENTIDAD\Producto.cs" />
+    <Compile Include="ENTIDAD\Proyecto.cs" />
     <Compile Include="ENTIDAD\Usuario.cs" />
     <Compile Include="ModificarNombre.cs">
       <SubType>Form</SubType>
