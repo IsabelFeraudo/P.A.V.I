@@ -74,13 +74,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 140);
+            this.ClientSize = new System.Drawing.Size(556, 349);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnOk);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.label1);
             this.Name = "ModificarNombre";
-            this.Text = "ModificarNombre";
+            this.Text = "Modificar Nombre";
             this.ResumeLayout(false);
             this.PerformLayout();
 

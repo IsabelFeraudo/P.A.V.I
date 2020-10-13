@@ -28,7 +28,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             List<ProductoEntidad> producto = new List<ProductoEntidad>();
             try
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Productos WHERE nombre like '%" + nombre + "%' AND (borrado = 0 OR borrado = null)", connection);
                     //cmd.Parameters.AddWithValue("@nombre", nombre);
@@ -57,7 +57,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             List<ProductoEntidad> producto = new List<ProductoEntidad>();
             try
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Productos where borrado = 0", connection);
                     cmd.CommandType = CommandType.Text;
@@ -83,7 +83,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
         public static string UpdateProducto(string nombre)
         {
             string respuesta = "";
-            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
             {
                 SqlCommand cmd = new SqlCommand("update Productos set nombre = @nombre WHERE nombre = @nombre AND (borrado = false OR borrado = null)", connection);
                 cmd.Parameters.AddWithValue("@nombre", nombre);
@@ -104,7 +104,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
         public static string InsertProducto(string nombre)
         {
             string respuesta = "";
-            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
             {
                 SqlCommand cmd = new SqlCommand("insert into Productos (nombre,borrado) values(@nombre, @borrado)", connection);
                 cmd.Parameters.AddWithValue("@nombre", nombre);
@@ -121,7 +121,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
         public static string DeleteProducto(int id)
         {
             string respuesta = "";
-            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
             {
                 SqlCommand cmd = new SqlCommand("update Productos set borrado = 1 WHERE id_producto = " + id , connection);
                 cmd.CommandType = CommandType.Text;
