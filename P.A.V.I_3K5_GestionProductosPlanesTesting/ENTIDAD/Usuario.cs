@@ -10,6 +10,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
     {
         public int IdUsuario { get; set; }
         public int IdPerfil { get; set; }
+        public string Perfil { get; set; }
         public string Nombre { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
@@ -20,6 +21,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
         {
             IdUsuario = 0;
             IdPerfil = 0;
+            Perfil = "";
             Nombre = "";
             Password = "";
             Email = "";

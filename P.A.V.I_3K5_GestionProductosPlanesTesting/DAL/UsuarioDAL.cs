@@ -7,11 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
 {
-    class UsuarioDAL
+    public class UsuarioDAL
     {
+        protected static string ConnectionString
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["P.A.V.I_3K5_GestionProductosPlanesTesting.Properties.Settings.GestionProductosPlanesTestingConnectionString"].ConnectionString;
+            }
+        }
         public static Usuario LoadUsuario(SqlDataReader dr)
         {
             Usuario usuario = new Usuario()
@@ -27,18 +35,32 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return usuario;
         }
 
+        public static Usuario LoadUsuarioModificar(SqlDataReader dr)
+        {
+            Usuario usuario = new Usuario()
+            {
+                IdUsuario = int.Parse(dr["id_usuario"].ToString()),
+                Perfil = dr["perfil"].ToString(),
+                Nombre = dr["usuario"].ToString(),
+                Password = dr["password"].ToString(),
+                Email = dr["email"].ToString(),
+                
+            };
+            return usuario;
+        }
+
         public static Usuario ValidarLogin(string nombreUsuario, string password)
         {
             Usuario usuario = new Usuario();
             try
             {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-PHQ3SE9\SQL_INSTANCIA;Initial Catalog=GestionProductosPlanesTesting;User ID=sa;Password=Holamundo12;"))
+                using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios WHERE usuario = @usuario and password = @password", connection);
+                    SqlCommand cmd = new SqlCommand("sp_SelectUsuarioByUsuarioPassWord", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
                     cmd.Parameters.AddWithValue("@password", password);
-                    cmd.CommandType = CommandType.Text;
-                    connection.Open();
+                    con.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
@@ -46,8 +68,8 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
                             usuario = LoadUsuario(dr);
                         }
                     }
-                    if (connection.State == ConnectionState.Open)
-                        connection.Close();
+                    if (con.State == ConnectionState.Open)
+                        con.Close();
                 }
             }
             catch (Exception exception)
@@ -56,5 +78,93 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             }
             return usuario;
         }
+
+        /// <summary>
+        /// devuelve el usuario para poder modificar
+        /// </summary>
+        
+        public static Usuario SelectModificarUsuario(int id)
+        {
+            Usuario usuario = new Usuario();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_SelectUsuarioByIdModificar", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdUsuario", id);
+                    
+                    con.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            usuario = LoadUsuarioModificar(dr);
+                        }
+                    }
+                    if (con.State == ConnectionState.Open)
+                        con.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            return usuario;
+        }
+
+        public static void UpdateUsuario(int id,string nombre,string perfil, string password, string email)
+        {
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("sp_UpdateUsuarioInfo", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idUsuario", id);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@perfil", perfil);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@email", email);
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
+            }
+        }
+
+        public static Usuario ValidarLogeado()
+        {
+            Usuario usuario = new Usuario();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_SelectUsuariByLogeado", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    con.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            usuario = LoadUsuario(dr);
+                        }
+                    }
+                    if (con.State == ConnectionState.Open)
+                        con.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            return usuario;
+        }
+
     }
 }

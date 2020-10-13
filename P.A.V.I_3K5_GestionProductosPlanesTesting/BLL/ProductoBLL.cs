@@ -15,13 +15,13 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
             return ProductoDAL.ValidarProducto(nombre);
         }
 
-        public static string UpdateProducto(string nombre)
+        public static void UpdateProducto(string nombre)
         {
-            return ProductoDAL.UpdateProducto(nombre);
+             ProductoDAL.UpdateProducto(nombre);
         }
-        public static string InsertProducto(string nombre)
+        public static void InsertProducto(string nombre)
         {
-            return ProductoDAL.InsertProducto(nombre);
+           ProductoDAL.InsertProducto(nombre);
         }
         public static string DeleteProducto(int id)
         {

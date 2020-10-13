@@ -14,5 +14,18 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
         {
             return UsuarioDAL.ValidarLogin(nombreUsuario, password);
         }
+
+        public static Usuario SelectModificarUsuario(int id)
+        {
+            return UsuarioDAL.SelectModificarUsuario(id);
+        }
+        public static void UpdateUsuario(int id, string nombre, string perfil, string password, string email)
+        {
+            UsuarioDAL.UpdateUsuario(id, nombre, perfil, password, email);
+        }
+        public static Usuario ValidarLogeado()
+        {
+            return UsuarioDAL.ValidarLogeado();
+        }
     }
 }
