@@ -107,5 +107,11 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
                 return;
             }
         }
+
+        private void btnOnClick(object sender, EventArgs e)
+        {
+           if (TxtProductoNombre.Text != null)
+                ProductoBLL.UpdateProducto(TxtProductoNombre.Text);
+        }
     }
 }

@@ -6,19 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using System.Configuration;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
 {
     public class ProductoDAL
     {
-        protected static string ConnectionString
-        {
-            get
-            {
-                return ConfigurationManager.ConnectionStrings["P.A.V.I_3K5_GestionProductosPlanesTesting.Properties.Settings.GestionProductosPlanesTestingConnectionString"].ConnectionString;
-            }
-        }
 
         public static ProductoEntidad LoadProducto(SqlDataReader dr)
         {
@@ -31,156 +23,116 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return producto;
         }
 
-        /// <summary>
-        /// valida que el producto se encuentre en base
-        /// </summary>
-        
         public static List<ProductoEntidad> ValidarProducto(string nombre)
         {
-            List<ProductoEntidad> lista = new List<ProductoEntidad>();
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            List<ProductoEntidad> producto = new List<ProductoEntidad>();
+            try
             {
-                try
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
                 {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("sp_BuscarProducto por nombre", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Productos WHERE nombre like '%" + nombre + "%' AND (borrado = 0 OR borrado = null)", connection);
+                    //cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.CommandType = CommandType.Text;
+                    connection.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            lista.Add(LoadProducto(dr));
+                            producto.Add(LoadProducto(dr));
                         }
                     }
+                    if (connection.State == ConnectionState.Open)
+                        connection.Close();
                 }
-                catch (Exception ex)
-                {
-
-                    throw (ex);
-                }
-
             }
-            return lista;
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            return producto;
         }
-
-        /// <summary>
-        ///  busca todos los productos que no esten borrados
-        /// </summary>
-        
 
         public static List<ProductoEntidad> SelectAll()
         {
-            List<ProductoEntidad> lista = new List<ProductoEntidad>();
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            List<ProductoEntidad> producto = new List<ProductoEntidad>();
+            try
             {
-                try
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
                 {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("sp_SelectALLProducts", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Productos where borrado = 0", connection);
+                    cmd.CommandType = CommandType.Text;
+                    connection.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            lista.Add(LoadProducto(dr));
+                            producto.Add(LoadProducto(dr));
                         }
                     }
+                    if (connection.State == ConnectionState.Open)
+                        connection.Close();
                 }
-                catch (Exception ex)
-                {
-
-                    throw (ex);
-                }
-
             }
-            return lista;
-        }
-
-        /// <summary>
-        /// actualiza el nombre del producto 
-        /// </summary>
-
-        public static void UpdateProducto(string nombre)
-        {
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            catch (Exception exception)
             {
-                try
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("sp_UpdateProducts", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw (ex);
-                }
+                Console.WriteLine(exception.Message);
             }
+            return producto;
         }
 
-        /// <summary>
-        ///  inserta un nuevo prducto en base
-        /// </summary>
-
-
-        public static void InsertProducto(string nombre)
+        public static string UpdateProducto(string nombre)
         {
-            //Directiva de conexion con sql.
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            string respuesta = "";
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
             {
-                try
+                SqlCommand cmd = new SqlCommand("update Productos set nombre = @nombre WHERE nombre = @nombre AND (borrado = false OR borrado = null)", connection);
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.Parameters.AddWithValue("@borrado", false);
+                connection.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
                 {
-                    //Abrimos la conexion.
-                    con.Open();
-
-                    SqlCommand cmd = new SqlCommand("sp_AddStockFood", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@borrado", false);
-
-                    cmd.ExecuteNonQuery();
+                    if (dr.Read())
+                        respuesta = "ok";
                 }
-                catch (Exception ex)
-                {
-                    //capturamos el error.
-                    throw (ex);
-                }
+
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
+            return respuesta;
         }
 
-        /// <summary>
-        /// realiza el borrado logico de un producto solo actualizando la columna borrado
-        /// </summary>
-        
+        public static string InsertProducto(string nombre)
+        {
+            string respuesta = "";
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
+            {
+                SqlCommand cmd = new SqlCommand("insert into Productos (nombre,borrado) values(@nombre, @borrado)", connection);
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.Parameters.AddWithValue("@borrado", false);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                    connection.Close();
+            }
+            return respuesta;
+        }
 
         public static string DeleteProducto(int id)
         {
             string respuesta = "";
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
             {
-                try
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("sp_DeleteProducts", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@IdProducto", id);
-                    cmd.ExecuteNonQuery();
+                SqlCommand cmd = new SqlCommand("update Productos set borrado = 1 WHERE id_producto = " + id , connection);
+                cmd.CommandType = CommandType.Text;
+                connection.Open();
+                
+                cmd.ExecuteNonQuery();
+                if (cmd.ExecuteNonQuery() > 0)
+                    respuesta = "ok";
 
-                    if (cmd.ExecuteNonQuery() > 0)
-                        respuesta = "ok";
-
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
-                }
-                catch (Exception ex)
-                {
-                    throw (ex);
-                }
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
             return respuesta;
         }
