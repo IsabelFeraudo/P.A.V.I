@@ -14,7 +14,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
         public string Version { get; set; }
         public string Alcance { get; set; }
         public int IdResponsable { get; set; }
-        public string Borrado { get; set; }
+        public bool Borrado { get; set; }
 
         public Proyecto()
         {
@@ -24,7 +24,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
             Version = "";
             Alcance = "";
             IdResponsable = 0;
-            Borrado = "";
+            Borrado = false;
         }
     }
 }

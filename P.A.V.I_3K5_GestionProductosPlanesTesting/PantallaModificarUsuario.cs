@@ -18,7 +18,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
         {
             InitializeComponent();
         }
-
+        
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             // hace un update a usuario y a perfil
@@ -29,5 +29,6 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
                 UsuarioBLL.UpdateUsuario(usuario.IdUsuario, TxtNombre.Text, TxtPerfil.Text, TxtPassword.Text, TxtEmail.Text);
             }
         }
+   
     }
 }

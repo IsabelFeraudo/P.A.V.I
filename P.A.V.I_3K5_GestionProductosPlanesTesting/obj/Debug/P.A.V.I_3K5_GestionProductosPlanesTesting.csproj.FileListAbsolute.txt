@@ -33,3 +33,5 @@ C:\Users\danic\Desktop\pav\P.A.V.I\P.A.V.I_3K5_GestionProductosPlanesTesting\obj
 C:\Users\danic\Desktop\pav\P.A.V.I\P.A.V.I_3K5_GestionProductosPlanesTesting\obj\Debug\P.A.V.I_3K5_GestionProductosPlanesTesting.csproj.CoreCompileInputs.cache
 C:\Users\danic\Desktop\pav\P.A.V.I\P.A.V.I_3K5_GestionProductosPlanesTesting\obj\Debug\P.A.V.I_3K5_GestionProductosPlanesTesting.exe
 C:\Users\danic\Desktop\pav\P.A.V.I\P.A.V.I_3K5_GestionProductosPlanesTesting\obj\Debug\P.A.V.I_3K5_GestionProductosPlanesTesting.pdb
+C:\Users\danic\Desktop\pav\P.A.V.I\P.A.V.I_3K5_GestionProductosPlanesTesting\obj\Debug\P.A.V.I_3K5_GestionProductosPlanesTesting.PantallaModificarUsuario.resources
+C:\Users\danic\Desktop\pav\P.A.V.I\P.A.V.I_3K5_GestionProductosPlanesTesting\obj\Debug\P.A.V.I_3K5_GestionProductosPlanesTesting.PantallaUsuario.resources

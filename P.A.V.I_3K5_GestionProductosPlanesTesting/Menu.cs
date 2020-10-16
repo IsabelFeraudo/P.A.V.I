@@ -34,5 +34,10 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
         {
 
         }
+
+        private void BtnAregarUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -7,19 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
 {
-    public class UsuarioDAL
+    class UsuarioDAL
     {
-        protected static string ConnectionString
-        {
-            get
-            {
-                return ConfigurationManager.ConnectionStrings["P.A.V.I_3K5_GestionProductosPlanesTesting.Properties.Settings.GestionProductosPlanesTestingConnectionString"].ConnectionString;
-            }
-        }
         public static Usuario LoadUsuario(SqlDataReader dr)
         {
             Usuario usuario = new Usuario()
@@ -35,32 +27,18 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return usuario;
         }
 
-        public static Usuario LoadUsuarioModificar(SqlDataReader dr)
-        {
-            Usuario usuario = new Usuario()
-            {
-                IdUsuario = int.Parse(dr["id_usuario"].ToString()),
-                Perfil = dr["perfil"].ToString(),
-                Nombre = dr["usuario"].ToString(),
-                Password = dr["password"].ToString(),
-                Email = dr["email"].ToString(),
-                
-            };
-            return usuario;
-        }
-
         public static Usuario ValidarLogin(string nombreUsuario, string password)
         {
             Usuario usuario = new Usuario();
             try
             {
-                using (SqlConnection con = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
                 {
-                    SqlCommand cmd = new SqlCommand("sp_SelectUsuarioByUsuarioPassWord", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios WHERE usuario = @usuario and password = @password", connection);
                     cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
                     cmd.Parameters.AddWithValue("@password", password);
-                    con.Open();
+                    cmd.CommandType = CommandType.Text;
+                    connection.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
@@ -68,8 +46,8 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
                             usuario = LoadUsuario(dr);
                         }
                     }
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
+                    if (connection.State == ConnectionState.Open)
+                        connection.Close();
                 }
             }
             catch (Exception exception)
@@ -79,21 +57,31 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return usuario;
         }
 
-        /// <summary>
-        /// devuelve el usuario para poder modificar
-        /// </summary>
-        
+        public static Usuario LoadUsuarioModificar(SqlDataReader dr)
+        {
+            Usuario usuario = new Usuario()
+            {
+                IdUsuario = int.Parse(dr["id_usuario"].ToString()),
+                Perfil = dr["perfil"].ToString(),
+                Nombre = dr["usuario"].ToString(),
+                Password = dr["password"].ToString(),
+                Email = dr["email"].ToString(),
+
+            };
+            return usuario;
+        }
+
         public static Usuario SelectModificarUsuario(int id)
         {
             Usuario usuario = new Usuario();
             try
             {
-                using (SqlConnection con = new SqlConnection(ConnectionString))
+                using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
                 {
                     SqlCommand cmd = new SqlCommand("sp_SelectUsuarioByIdModificar", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@IdUsuario", id);
-                    
+
                     con.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -112,10 +100,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             }
             return usuario;
         }
-
-        public static void UpdateUsuario(int id,string nombre,string perfil, string password, string email)
+        public static void UpdateUsuario(int id, string nombre, string perfil, string password, string email)
         {
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+            using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
             {
                 try
                 {
@@ -136,17 +123,16 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
                 }
             }
         }
-
         public static Usuario ValidarLogeado()
         {
             Usuario usuario = new Usuario();
             try
             {
-                using (SqlConnection con = new SqlConnection(ConnectionString))
+                using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
                 {
                     SqlCommand cmd = new SqlCommand("sp_SelectUsuariByLogeado", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    
+
                     con.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -165,6 +151,5 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             }
             return usuario;
         }
-
     }
 }

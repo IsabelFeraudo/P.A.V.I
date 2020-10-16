@@ -47,8 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\CasosDePruebaBLL.cs" />
     <Compile Include="BLL\ProductoBLL.cs" />
+    <Compile Include="BLL\ProyectoBLL.cs" />
+    <Compile Include="BLL\PruebaDetalleBLL.cs" />
     <Compile Include="BLL\UsuarioBLL.cs" />
+    <Compile Include="DAL\CasosDePruebaDAL.cs" />
+    <Compile Include="DAL\CicloPruebaDAL.cs" />
+    <Compile Include="DAL\PlanesDePruebaDAL.cs" />
+    <Compile Include="DAL\ProyectoDAL.cs" />
     <Compile Include="DAL\PruebaDetalleDAL.cs" />
     <Compile Include="DAL\ProductoDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
