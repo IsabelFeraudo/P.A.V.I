@@ -11,9 +11,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
 {
     public class PruebaDetalleDAL
     {
-        public static PruebaDetalle LoadPruebaDetalle(SqlDataReader dr)
+        public static PruebaDetalleEntidad LoadPruebaDetalle(SqlDataReader dr)
         {
-            PruebaDetalle prueba = new PruebaDetalle()
+            PruebaDetalleEntidad prueba = new PruebaDetalleEntidad()
             {
                 idCicloPruebaDetalle = int.Parse(dr["id_ciclo_prueba_detalle"].ToString()),
                 idCicloPrueba = int.Parse(dr["id_ciclo_prueba"].ToString()),
@@ -28,9 +28,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return prueba;
         }
 
-        public static List<PruebaDetalle> SelectAll()
+        public static List<PruebaDetalleEntidad> SelectAll()
         {
-            List<PruebaDetalle> prueba = new List<PruebaDetalle>();
+            List<PruebaDetalleEntidad> prueba = new List<PruebaDetalleEntidad>();
             try
             {
                 using(SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))

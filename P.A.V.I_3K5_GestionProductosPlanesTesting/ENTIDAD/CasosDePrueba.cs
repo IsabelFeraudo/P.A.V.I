@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
 {
-    public class CasosDePrueba
+    public class CasosDePruebaEntidad
     {
         public int idCasoPrueba { get; set; }
         public int idPlanPrueba { get; set; }
@@ -15,7 +15,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
         public int idResponsable { get; set; }
         public bool borrado { get; set; }
 
-        public CasosDePrueba()
+        public CasosDePruebaEntidad()
         {
             idCasoPrueba = 0;
             idPlanPrueba = 0;

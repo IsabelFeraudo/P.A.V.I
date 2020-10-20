@@ -10,12 +10,12 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
 {
     public class UsuarioBLL
     {
-        public static Usuario ValidarLogin(string nombreUsuario, string password)
+        public static UsuarioEntidad ValidarLogin(string nombreUsuario, string password)
         {
             return UsuarioDAL.ValidarLogin(nombreUsuario, password);
         }
         
-        public static Usuario SelectModificarUsuario(int id)
+        public static UsuarioEntidad SelectModificarUsuario(int id)
         {
             return UsuarioDAL.SelectModificarUsuario(id);
         }
@@ -24,9 +24,14 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
         {
             UsuarioDAL.UpdateUsuario(id, nombre, perfil, password, email);
         }
-        public static Usuario ValidarLogeado()
+        public static UsuarioEntidad ValidarLogeado()
         {
             return UsuarioDAL.ValidarLogeado();
+        }
+
+        public static List<UsuarioEntidad> SelectAll()
+        {
+            return UsuarioDAL.SelectAll();
         }
     }
 }

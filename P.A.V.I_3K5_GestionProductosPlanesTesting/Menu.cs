@@ -35,9 +35,40 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
 
         }
 
-        private void BtnAregarUsuario_Click(object sender, EventArgs e)
+        private void btnCasoPrueba_Click(object sender, EventArgs e)
         {
+            CasosDePrueba caso = new CasosDePrueba();
+            caso.ShowDialog();
+        }
 
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = new Usuario();
+            usuario.ShowDialog();
+        }
+
+        private void btnCicloPrueba_Click(object sender, EventArgs e)
+        {
+            CicloDePrueba ciclo = new CicloDePrueba();
+            ciclo.ShowDialog();
+        }
+
+        private void btnPruebaDetalle_Click(object sender, EventArgs e)
+        {
+            PruebaDetalles prueba = new PruebaDetalles();
+            prueba.ShowDialog();
+        }
+
+        private void btnPlanPrueba_Click(object sender, EventArgs e)
+        {
+            PlanPrueba plan = new PlanPrueba();
+            plan.ShowDialog();
+        }
+
+        private void btnProyecto_Click(object sender, EventArgs e)
+        {
+            Proyecto proyecto = new Proyecto();
+            proyecto.ShowDialog();
         }
     }
 }

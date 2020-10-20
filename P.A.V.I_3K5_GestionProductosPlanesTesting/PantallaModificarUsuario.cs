@@ -25,7 +25,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
             if (MessageBox.Show("Desea modificar este usuario?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 //buscar el id del usuario en base para pasar en la actualizacion
-                Usuario usuario = UsuarioBLL.ValidarLogeado();
+                UsuarioEntidad usuario = UsuarioBLL.ValidarLogeado();
                 UsuarioBLL.UpdateUsuario(usuario.IdUsuario, TxtNombre.Text, TxtPerfil.Text, TxtPassword.Text, TxtEmail.Text);
             }
         }

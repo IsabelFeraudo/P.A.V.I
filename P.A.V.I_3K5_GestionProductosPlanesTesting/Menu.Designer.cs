@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.BtnProducto = new System.Windows.Forms.Button();
-            this.BtnProyecto = new System.Windows.Forms.Button();
-            this.BtnCasoPruebra = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.BtnAregarUsuario = new System.Windows.Forms.Button();
+            this.btnPlanPrueba = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPruebaDetalle = new System.Windows.Forms.Button();
             this.btnCicloPrueba = new System.Windows.Forms.Button();
+            this.btnProyecto = new System.Windows.Forms.Button();
+            this.btnCasoPrueba = new System.Windows.Forms.Button();
+            this.btnUsuario = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnProducto
@@ -48,42 +48,15 @@
             this.BtnProducto.UseVisualStyleBackColor = true;
             this.BtnProducto.Click += new System.EventHandler(this.BtnProducto_Click);
             // 
-            // BtnProyecto
+            // btnPlanPrueba
             // 
-            this.BtnProyecto.Location = new System.Drawing.Point(249, 95);
-            this.BtnProyecto.Name = "BtnProyecto";
-            this.BtnProyecto.Size = new System.Drawing.Size(147, 46);
-            this.BtnProyecto.TabIndex = 2;
-            this.BtnProyecto.Text = "Proyecto";
-            this.BtnProyecto.UseVisualStyleBackColor = true;
-            // 
-            // BtnCasoPruebra
-            // 
-            this.BtnCasoPruebra.Location = new System.Drawing.Point(440, 95);
-            this.BtnCasoPruebra.Name = "BtnCasoPruebra";
-            this.BtnCasoPruebra.Size = new System.Drawing.Size(147, 46);
-            this.BtnCasoPruebra.TabIndex = 3;
-            this.BtnCasoPruebra.Text = "Caso De Prueba";
-            this.BtnCasoPruebra.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(629, 95);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 46);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Plan De Prueba";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // BtnAregarUsuario
-            // 
-            this.BtnAregarUsuario.Location = new System.Drawing.Point(138, 181);
-            this.BtnAregarUsuario.Name = "BtnAregarUsuario";
-            this.BtnAregarUsuario.Size = new System.Drawing.Size(147, 41);
-            this.BtnAregarUsuario.TabIndex = 5;
-            this.BtnAregarUsuario.Text = "Usuario";
-            this.BtnAregarUsuario.UseVisualStyleBackColor = true;
-            this.BtnAregarUsuario.Click += new System.EventHandler(this.BtnAregarUsuario_Click);
+            this.btnPlanPrueba.Location = new System.Drawing.Point(629, 95);
+            this.btnPlanPrueba.Name = "btnPlanPrueba";
+            this.btnPlanPrueba.Size = new System.Drawing.Size(147, 46);
+            this.btnPlanPrueba.TabIndex = 4;
+            this.btnPlanPrueba.Text = "Plan De Prueba";
+            this.btnPlanPrueba.UseVisualStyleBackColor = true;
+            this.btnPlanPrueba.Click += new System.EventHandler(this.btnPlanPrueba_Click);
             // 
             // label1
             // 
@@ -103,6 +76,7 @@
             this.btnPruebaDetalle.TabIndex = 7;
             this.btnPruebaDetalle.Text = "Prueba Detalle";
             this.btnPruebaDetalle.UseVisualStyleBackColor = true;
+            this.btnPruebaDetalle.Click += new System.EventHandler(this.btnPruebaDetalle_Click);
             // 
             // btnCicloPrueba
             // 
@@ -112,19 +86,50 @@
             this.btnCicloPrueba.TabIndex = 8;
             this.btnCicloPrueba.Text = "Ciclo De Prueba";
             this.btnCicloPrueba.UseVisualStyleBackColor = true;
+            this.btnCicloPrueba.Click += new System.EventHandler(this.btnCicloPrueba_Click);
+            // 
+            // btnProyecto
+            // 
+            this.btnProyecto.Location = new System.Drawing.Point(237, 95);
+            this.btnProyecto.Name = "btnProyecto";
+            this.btnProyecto.Size = new System.Drawing.Size(147, 46);
+            this.btnProyecto.TabIndex = 9;
+            this.btnProyecto.Text = "Proyecto";
+            this.btnProyecto.UseVisualStyleBackColor = true;
+            this.btnProyecto.Click += new System.EventHandler(this.btnProyecto_Click);
+            // 
+            // btnCasoPrueba
+            // 
+            this.btnCasoPrueba.Location = new System.Drawing.Point(438, 95);
+            this.btnCasoPrueba.Name = "btnCasoPrueba";
+            this.btnCasoPrueba.Size = new System.Drawing.Size(147, 46);
+            this.btnCasoPrueba.TabIndex = 10;
+            this.btnCasoPrueba.Text = "Casos De Prueba";
+            this.btnCasoPrueba.UseVisualStyleBackColor = true;
+            this.btnCasoPrueba.Click += new System.EventHandler(this.btnCasoPrueba_Click);
+            // 
+            // btnUsuario
+            // 
+            this.btnUsuario.Location = new System.Drawing.Point(143, 178);
+            this.btnUsuario.Name = "btnUsuario";
+            this.btnUsuario.Size = new System.Drawing.Size(147, 46);
+            this.btnUsuario.TabIndex = 11;
+            this.btnUsuario.Text = "Usuarios";
+            this.btnUsuario.UseVisualStyleBackColor = true;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 390);
+            this.Controls.Add(this.btnUsuario);
+            this.Controls.Add(this.btnCasoPrueba);
+            this.Controls.Add(this.btnProyecto);
             this.Controls.Add(this.btnCicloPrueba);
             this.Controls.Add(this.btnPruebaDetalle);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.BtnAregarUsuario);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.BtnCasoPruebra);
-            this.Controls.Add(this.BtnProyecto);
+            this.Controls.Add(this.btnPlanPrueba);
             this.Controls.Add(this.BtnProducto);
             this.Name = "Menu";
             this.Text = "Gestion de productos y planes de testing";
@@ -136,12 +141,12 @@
 
         #endregion
         private System.Windows.Forms.Button BtnProducto;
-        private System.Windows.Forms.Button BtnProyecto;
-        private System.Windows.Forms.Button BtnCasoPruebra;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button BtnAregarUsuario;
+        private System.Windows.Forms.Button btnPlanPrueba;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnPruebaDetalle;
         private System.Windows.Forms.Button btnCicloPrueba;
+        private System.Windows.Forms.Button btnProyecto;
+        private System.Windows.Forms.Button btnCasoPrueba;
+        private System.Windows.Forms.Button btnUsuario;
     }
 }

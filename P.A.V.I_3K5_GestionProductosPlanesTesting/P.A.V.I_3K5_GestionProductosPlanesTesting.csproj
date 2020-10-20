@@ -47,11 +47,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMProyecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMProyecto.Designer.cs">
+      <DependentUpon>ABMProyecto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABMusuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMusuario.Designer.cs">
+      <DependentUpon>ABMusuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="BLL\CasosDePruebaBLL.cs" />
     <Compile Include="BLL\ProductoBLL.cs" />
     <Compile Include="BLL\ProyectoBLL.cs" />
     <Compile Include="BLL\PruebaDetalleBLL.cs" />
     <Compile Include="BLL\UsuarioBLL.cs" />
+    <Compile Include="CasosDePrueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CasosDePrueba.Designer.cs">
+      <DependentUpon>CasosDePrueba.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CicloDePrueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CicloDePrueba.Designer.cs">
+      <DependentUpon>CicloDePrueba.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\CasosDePruebaDAL.cs" />
     <Compile Include="DAL\CicloPruebaDAL.cs" />
     <Compile Include="DAL\PlanesDePruebaDAL.cs" />
@@ -66,6 +90,46 @@
     <Compile Include="ENTIDAD\Proyecto.cs" />
     <Compile Include="ENTIDAD\PruebaDetalle.cs" />
     <Compile Include="ENTIDAD\Usuario.cs" />
+    <Compile Include="GestionProductosPlanesTestingDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProductosPlanesTestingDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProductosPlanesTestingDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProductosPlanesTestingDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProductosPlanesTestingDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProductosPlanesTestingDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProductosPlanesTestingDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProductosPlanesTestingDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProductosPlanesTestingDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProductosPlanesTestingDataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProductosPlanesTestingDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProductosPlanesTestingDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProductosPlanesTestingDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProductosPlanesTestingDataSet8.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProductosPlanesTestingDataSet9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionProductosPlanesTestingDataSet9.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModificarNombre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +170,12 @@
     <Compile Include="PantallaUsuario.Designer.cs">
       <DependentUpon>PantallaUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlanPrueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlanPrueba.Designer.cs">
+      <DependentUpon>PlanPrueba.cs</DependentUpon>
+    </Compile>
     <Compile Include="Producto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +184,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proyecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proyecto.Designer.cs">
+      <DependentUpon>Proyecto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PruebaDetalles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PruebaDetalles.Designer.cs">
+      <DependentUpon>PruebaDetalles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario.Designer.cs">
+      <DependentUpon>Usuario.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ABMProyecto.resx">
+      <DependentUpon>ABMProyecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMusuario.resx">
+      <DependentUpon>ABMusuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModificarNombre.resx">
       <DependentUpon>ModificarNombre.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +235,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Proyecto.resx">
+      <DependentUpon>Proyecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario.resx">
+      <DependentUpon>Usuario.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="GestionProductosPlanesTestingDataSet.xsc">
       <DependentUpon>GestionProductosPlanesTestingDataSet.xsd</DependentUpon>
     </None>
@@ -162,6 +262,94 @@
     </None>
     <None Include="GestionProductosPlanesTestingDataSet1.xss">
       <DependentUpon>GestionProductosPlanesTestingDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet2.xsc">
+      <DependentUpon>GestionProductosPlanesTestingDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionProductosPlanesTestingDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet2.xss">
+      <DependentUpon>GestionProductosPlanesTestingDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet3.xsc">
+      <DependentUpon>GestionProductosPlanesTestingDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionProductosPlanesTestingDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet3.xss">
+      <DependentUpon>GestionProductosPlanesTestingDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet4.xsc">
+      <DependentUpon>GestionProductosPlanesTestingDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionProductosPlanesTestingDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet4.xss">
+      <DependentUpon>GestionProductosPlanesTestingDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet5.xsc">
+      <DependentUpon>GestionProductosPlanesTestingDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionProductosPlanesTestingDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet5.xss">
+      <DependentUpon>GestionProductosPlanesTestingDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet6.xsc">
+      <DependentUpon>GestionProductosPlanesTestingDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionProductosPlanesTestingDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet6.xss">
+      <DependentUpon>GestionProductosPlanesTestingDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet7.xsc">
+      <DependentUpon>GestionProductosPlanesTestingDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionProductosPlanesTestingDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet7.xss">
+      <DependentUpon>GestionProductosPlanesTestingDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet8.xsc">
+      <DependentUpon>GestionProductosPlanesTestingDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionProductosPlanesTestingDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet8.xss">
+      <DependentUpon>GestionProductosPlanesTestingDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet9.xsc">
+      <DependentUpon>GestionProductosPlanesTestingDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet9.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionProductosPlanesTestingDataSet9.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionProductosPlanesTestingDataSet9.xss">
+      <DependentUpon>GestionProductosPlanesTestingDataSet9.xsd</DependentUpon>
     </None>
     <None Include="Properties\DataSources\P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD.ProductoEntidad.datasource" />
     <None Include="Properties\Settings.settings">

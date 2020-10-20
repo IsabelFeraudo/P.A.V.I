@@ -11,9 +11,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
 {
     public class ProyectoDAL
     {
-        public static Proyecto LoadProyecto(SqlDataReader dr)
+        public static ProyectoEntidad LoadProyecto(SqlDataReader dr)
         {
-            Proyecto pro = new Proyecto()
+            ProyectoEntidad pro = new ProyectoEntidad()
             {
                 IdProyecto = int.Parse(dr["id_proyecto"].ToString()),
                 IdProducto = int.Parse(dr["id_producto"].ToString()),
@@ -27,14 +27,14 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return pro;
         }
 
-        public static List<Proyecto> SelectAll()
+        public static List<ProyectoEntidad> SelectAll()
         {
-            List<Proyecto> proyecto = new List<Proyecto>();
+            List<ProyectoEntidad> proyecto = new List<ProyectoEntidad>();
             try
             {
                 using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Proyectos where borrado = 0", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Proyectos WHERE borrado = 0", connection);
                     cmd.CommandType = CommandType.Text;
                     connection.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
@@ -55,40 +55,12 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return proyecto;
         }
 
-        public static string UpdateProyecto(int idProyecto, int idProducto, string descripcion, string version, string alcance, int idResponsable)
+        public static ProyectoEntidad UpdateProyecto(string descripcion, string version, string alcance, int idResponsable)
         {
-            string respuesta = "";
+            ProyectoEntidad proyecto = new ProyectoEntidad();
             using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
             {
-                SqlCommand cmd = new SqlCommand("update Productos set idProyecto = @id_proyecto WHERE idProyecto = @idProyecto AND (borrado = false OR borrado = null)", connection);
-                cmd.Parameters.AddWithValue("@id_proyecto", idProyecto);
-                cmd.Parameters.AddWithValue("@id_producto", idProducto);
-                cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                cmd.Parameters.AddWithValue("@version", version);
-                cmd.Parameters.AddWithValue("@alcance", alcance);
-                cmd.Parameters.AddWithValue("@id_responsable", idResponsable);
-                cmd.Parameters.AddWithValue("@borrado", false);
-                connection.Open();
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    if (dr.Read())
-                        respuesta = "ok";
-                }
-
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
-            }
-            return respuesta;
-        }
-
-        public static string InsertProyecto(int idProyecto, int idProducto, string descripcion, string version,string alcance, int idResponsable)
-        {
-            string respuesta = "";
-            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
-            {
-                SqlCommand cmd = new SqlCommand("insert into Proyectos (idProyecto,idProducto,descripcion,version,alcance,idResponsable,borrado) values(@id_proyecto, @id_producto, @descripcion, @version, @alcance, @id_responsable, @borrado)", connection);
-                cmd.Parameters.AddWithValue("@id_proyecto", idProyecto);
-                cmd.Parameters.AddWithValue("@id_producto", idProducto);
+                SqlCommand cmd = new SqlCommand("UPDATE Productos set idProyecto = @id_proyecto WHERE idProyecto = @idProyecto AND (borrado = false OR borrado = null)", connection);
                 cmd.Parameters.AddWithValue("@descripcion", descripcion);
                 cmd.Parameters.AddWithValue("@version", version);
                 cmd.Parameters.AddWithValue("@alcance", alcance);
@@ -97,10 +69,32 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
                 connection.Open();
                 cmd.ExecuteNonQuery();
 
-                if (connection.State == System.Data.ConnectionState.Open)
+                if (connection.State == ConnectionState.Open)
                     connection.Close();
             }
-            return respuesta;
+            return proyecto;
+        }
+
+        public static ProyectoEntidad InsertProyecto(int id_proyecto, int id_producto, string descripcion, string version,string alcance, int id_responsable, bool borrado)
+        {
+            ProyectoEntidad proyecto = new ProyectoEntidad(); 
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO Proyectos (id_proyecto,id_producto,descripcion,version,alcance,id_responsable,borrado) values(@id_proyecto, @id_producto, @descripcion, @version, @alcance, @id_responsable, @borrado)", connection);
+                cmd.Parameters.AddWithValue("@id_proyecto", id_proyecto);
+                cmd.Parameters.AddWithValue("@id_producto", id_producto);
+                cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                cmd.Parameters.AddWithValue("@version", version);
+                cmd.Parameters.AddWithValue("@alcance", alcance);
+                cmd.Parameters.AddWithValue("@id_responsable", id_responsable);
+                cmd.Parameters.AddWithValue("@borrado", false);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
+            return proyecto;
         }
 
         public static string DeleteProyecto(int id)
@@ -108,7 +102,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             string respuesta = "";
             using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
             {
-                SqlCommand cmd = new SqlCommand("update Proyectos set borrado = 1 WHERE id_producto = " + id, connection);
+                SqlCommand cmd = new SqlCommand("UPDATE Proyectos set borrado = 1 WHERE id_producto = " + id, connection);
                 cmd.CommandType = CommandType.Text;
                 connection.Open();
 
@@ -121,5 +115,81 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             }
             return respuesta;
         }
+
+        private void CargarIdResponsable()
+        {
+
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
+            {
+                SqlCommand cmd = new SqlCommand();
+                string consulta = "SELECT * FROM Proyectos";
+
+                cmd.Parameters.Clear();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = consulta;
+
+                connection.Open();
+                cmd.Connection = connection;
+
+                DataTable data = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(data);
+                connection.Close();
+            }
+        }
+
+        public static List<ProyectoEntidad> SelectDoc()
+        {
+            List<ProyectoEntidad> listItem = new List<ProyectoEntidad>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Proyectos", connection);
+                    cmd.CommandType = CommandType.Text;
+                    connection.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            listItem.Add(LoadProyecto(dr));
+                        }
+                    }
+                    if (connection.State == System.Data.ConnectionState.Open)
+                        connection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            return listItem;
+        }
+
+        public static ProyectoEntidad SelectProyecto(int id)
+        {
+            ProyectoEntidad proyecto = new ProyectoEntidad();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Proyectos WHERE idProyecto = @id_proyecto AND (borrado = false OR borrado = null)", connection);
+                    cmd.CommandType = CommandType.Text;
+                    connection.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        LoadProyecto(dr);
+                    }
+                    if (connection.State == ConnectionState.Open)
+                        connection.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            return proyecto;
+        }
+
     }
 }

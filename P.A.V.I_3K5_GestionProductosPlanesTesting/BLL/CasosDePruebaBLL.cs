@@ -10,7 +10,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
 {
     public class CasosDePruebaBLL
     {
-        public static List<CasosDePrueba> SelectAll()
+        public static List<CasosDePruebaEntidad> SelectAll()
         {
             return CasosDePruebaDAL.SelectAll();
         }

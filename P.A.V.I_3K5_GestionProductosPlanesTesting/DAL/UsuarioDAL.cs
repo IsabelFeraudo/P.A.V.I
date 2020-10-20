@@ -1,5 +1,4 @@
-﻿using P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
@@ -7,14 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
 {
     class UsuarioDAL
     {
-        public static Usuario LoadUsuario(SqlDataReader dr)
+        public static UsuarioEntidad LoadUsuario(SqlDataReader dr)
         {
-            Usuario usuario = new Usuario()
+            UsuarioEntidad usuario = new UsuarioEntidad()
             {
                 IdUsuario = int.Parse(dr["id_usuario"].ToString()),
                 IdPerfil = int.Parse(dr["id_perfil"].ToString()),
@@ -27,9 +27,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return usuario;
         }
 
-        public static Usuario ValidarLogin(string nombreUsuario, string password)
+        public static UsuarioEntidad ValidarLogin(string nombreUsuario, string password)
         {
-            Usuario usuario = new Usuario();
+            UsuarioEntidad usuario = new UsuarioEntidad();
             try
             {
                 using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
@@ -57,9 +57,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return usuario;
         }
 
-        public static Usuario LoadUsuarioModificar(SqlDataReader dr)
+        public static UsuarioEntidad LoadUsuarioModificar(SqlDataReader dr)
         {
-            Usuario usuario = new Usuario()
+            UsuarioEntidad usuario = new UsuarioEntidad()
             {
                 IdUsuario = int.Parse(dr["id_usuario"].ToString()),
                 Perfil = dr["perfil"].ToString(),
@@ -71,9 +71,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
             return usuario;
         }
 
-        public static Usuario SelectModificarUsuario(int id)
+        public static UsuarioEntidad SelectModificarUsuario(int id)
         {
-            Usuario usuario = new Usuario();
+            UsuarioEntidad usuario = new UsuarioEntidad();
             try
             {
                 using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
@@ -123,9 +123,9 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
                 }
             }
         }
-        public static Usuario ValidarLogeado()
+        public static UsuarioEntidad ValidarLogeado()
         {
-            Usuario usuario = new Usuario();
+            UsuarioEntidad usuario = new UsuarioEntidad();
             try
             {
                 using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True;"))
@@ -143,6 +143,34 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.DAL
                     }
                     if (con.State == ConnectionState.Open)
                         con.Close();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            return usuario;
+        }
+
+        public static List<UsuarioEntidad> SelectAll()
+        {
+            List<UsuarioEntidad> usuario = new List<UsuarioEntidad>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-BER74LN\SQLEXPRESS;Initial Catalog=GestionProductosPlanesTesting;Integrated Security=True"))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios where borrado = 0", connection);
+                    cmd.CommandType = CommandType.Text;
+                    connection.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            usuario.Add(LoadUsuarioModificar(dr));
+                        }
+                    }
+                    if (connection.State == ConnectionState.Open)
+                        connection.Close();
                 }
             }
             catch (Exception exception)

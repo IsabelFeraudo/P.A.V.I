@@ -10,22 +10,32 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.BLL
 {
     public class ProyectoBLL
     {
-        public static List<Proyecto> SelectAll()
+        public static List<ProyectoEntidad> SelectAll()
         {
             return ProyectoDAL.SelectAll();
         }
 
-        public static void UpdateProyecto(int idProyecto, int idProducto, string descripcion, string version, string alcance, int idResponsable)
+        public static ProyectoEntidad UpdateProyecto(string descripcion, string version, string alcance, int idResponsable)
         {
-            ProyectoDAL.UpdateProyecto(idProyecto, idProducto, descripcion, version, alcance, idResponsable);
+            return ProyectoDAL.UpdateProyecto(descripcion, version, alcance, idResponsable);
         }
-        public static void InsertProyecto(int idProyecto, int idProducto, string descripcion, string version, string alcance, int idResponsable)
+        public static ProyectoEntidad InsertProyecto(int id_proyecto, int id_producto, string descripcion, string version, string alcance, int id_responsable,bool borrado)
         {
-            ProyectoDAL.InsertProyecto(idProyecto,idProducto, descripcion, version, alcance, idResponsable);
+            return ProyectoDAL.InsertProyecto(id_proyecto, id_producto, descripcion, version, alcance, id_responsable, false);
         }
         public static string DeleteProyecto(int idProyecto)
         {
             return ProyectoDAL.DeleteProyecto(idProyecto);
+        }
+
+        public static List<ProyectoEntidad> SelectDoc()
+        {
+            return ProyectoDAL.SelectDoc();
+        }
+
+        public static ProyectoEntidad SelectProyecto(int id)
+        {
+            return ProyectoDAL.SelectProyecto(id);
         }
     }
 }

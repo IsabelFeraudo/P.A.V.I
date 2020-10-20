@@ -40,7 +40,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting
                 MessageBox.Show("Se debe ingresar una contraseña.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            Usuario user = new Usuario();
+            UsuarioEntidad user = new UsuarioEntidad();
             user = UsuarioBLL.ValidarLogin(TxtUsuario.Text, TxtPassword.Text);
 
             if (!string.IsNullOrEmpty(user.Nombre.ToString()))

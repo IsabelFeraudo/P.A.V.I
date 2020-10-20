@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
 {
-    public class PruebaDetalle
+    public class PruebaDetalleEntidad
     {
         public int idCicloPruebaDetalle { get; set; }
         public int idCicloPrueba { get; set; }
@@ -17,7 +17,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
         public bool aceptado { get; set; }
         public bool borrado { get; set; }
 
-        public PruebaDetalle()
+        public PruebaDetalleEntidad()
         {
             idCicloPruebaDetalle = 0;
             idCicloPrueba = 0;

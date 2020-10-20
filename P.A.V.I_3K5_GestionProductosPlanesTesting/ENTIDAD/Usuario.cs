@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
 {
-    public class Usuario
+    public class UsuarioEntidad
     {
         public int IdUsuario { get; set; }
         public int IdPerfil { get; set; }
@@ -17,7 +17,7 @@ namespace P.A.V.I_3K5_GestionProductosPlanesTesting.ENTIDAD
         public string Estado { get; set; }
         public bool Borrado { get; set; }
 
-        public Usuario()
+        public UsuarioEntidad()
         {
             IdUsuario = 0;
             IdPerfil = 0;
