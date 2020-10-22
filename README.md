@@ -2,4 +2,8 @@
 
 Proyecto: P.A.V.I_3K5_GestionProductosPlanesTesting
 
-Integrantes: Gigena Nataniel 70203 Catalano Celina 45095 Néstor Daniel Gauna 62767
+Integrantes:
+Casella Juan Manuel 
+Gauna Nestor Daniel 62767
+Gigena Nataniel 70203
+Feraudo Isabel 73462  
